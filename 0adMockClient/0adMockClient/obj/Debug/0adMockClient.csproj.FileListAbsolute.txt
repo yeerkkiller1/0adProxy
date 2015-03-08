@@ -1,0 +1,6 @@
+C:\Repos\0adProxy\0adMockClient\0adMockClient\bin\Debug\0adMockClient.exe.config
+C:\Repos\0adProxy\0adMockClient\0adMockClient\bin\Debug\0adMockClient.exe
+C:\Repos\0adProxy\0adMockClient\0adMockClient\bin\Debug\0adMockClient.pdb
+C:\Repos\0adProxy\0adMockClient\0adMockClient\obj\Debug\0adMockClient.csprojResolveAssemblyReference.cache
+C:\Repos\0adProxy\0adMockClient\0adMockClient\obj\Debug\0adMockClient.exe
+C:\Repos\0adProxy\0adMockClient\0adMockClient\obj\Debug\0adMockClient.pdb

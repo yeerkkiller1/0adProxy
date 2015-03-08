@@ -1,0 +1,6 @@
+C:\Repos\0adProxy\0adMockServer\0adMockServer\bin\Debug\0adMockServer.exe.config
+C:\Repos\0adProxy\0adMockServer\0adMockServer\bin\Debug\0adMockServer.exe
+C:\Repos\0adProxy\0adMockServer\0adMockServer\bin\Debug\0adMockServer.pdb
+C:\Repos\0adProxy\0adMockServer\0adMockServer\obj\Debug\0adMockServer.exe
+C:\Repos\0adProxy\0adMockServer\0adMockServer\obj\Debug\0adMockServer.pdb
+C:\Repos\0adProxy\0adMockServer\0adMockServer\obj\Debug\0adMockServer.csprojResolveAssemblyReference.cache

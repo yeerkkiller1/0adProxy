@@ -1,0 +1,8 @@
+C:\Repos\0adProxy\ServerProxy\ServerProxy\bin\Debug\ServerProxy.exe.config
+C:\Repos\0adProxy\ServerProxy\ServerProxy\bin\Debug\ServerProxy.exe
+C:\Repos\0adProxy\ServerProxy\ServerProxy\bin\Debug\ServerProxy.pdb
+C:\Repos\0adProxy\ServerProxy\ServerProxy\obj\Debug\ServerProxy.csprojResolveAssemblyReference.cache
+C:\Repos\0adProxy\ServerProxy\ServerProxy\obj\Debug\ServerProxy.exe
+C:\Repos\0adProxy\ServerProxy\ServerProxy\obj\Debug\ServerProxy.pdb
+C:\Repos\0adProxy\ServerProxy\ServerProxy\bin\Debug\UdpSessions.exe
+C:\Repos\0adProxy\ServerProxy\ServerProxy\bin\Debug\UdpSessions.pdb
