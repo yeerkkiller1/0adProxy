@@ -44,12 +44,11 @@ namespace _0adHostProxy
 
         static void Main(string[] args)
         {
+            proxyAddress = args[0];
+
             ReconnToProxy();
 
             Dictionary<int, UdpSender> hostConnections = new Dictionary<int, UdpSender>();
-            //var hostServer = new UdpSender("localhost", hostPort);
-            //hostServer.OnMessage = (bytes)
-
             
             while(true)
             {
