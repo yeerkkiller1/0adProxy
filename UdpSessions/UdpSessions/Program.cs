@@ -57,44 +57,45 @@ namespace UdpSessions
         string hostname;
         int serverPort;
 
-        bool reading = false;
         public UdpSender(string hostname, int serverPort)
         {
             conn = new UdpClient(0);
+            conn.Connect(hostname, serverPort);
 
             this.hostname = hostname;
             this.serverPort = serverPort;
+
+            this.StartReading();
+        }
+
+        public void StartReading()
+        {
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    try
+                    {
+                        //TODO: Should probably specify we can only read from the server that we sent the
+                        //  message too... but it is not like that provides any security...
+                        var serverEndPoint = new IPEndPoint(IPAddress.Any, 0);
+                        var readBytes = conn.Receive(ref serverEndPoint);
+                        if (this.OnMessage != null)
+                        {
+                            this.OnMessage(readBytes);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        this.OnError(e);
+                    }
+                }
+            });
         }
 
         public void Send(byte[] bytes)
         {
-            conn.Send(bytes, hostname, serverPort);
-
-            if(!reading)
-            {
-                reading = true;
-                Task.Run(() =>
-                {
-                    while (true)
-                    {
-                        try
-                        {
-                            //TODO: Should probably specify we can only read from the server that we sent the
-                            //  message too... but it is not like that provides any security...
-                            var serverEndPoint = new IPEndPoint(IPAddress.Any, 0);
-                            var readBytes = conn.Receive(ref serverEndPoint);
-                            if (this.OnMessage != null)
-                            {
-                                this.OnMessage(readBytes);
-                            }
-                        }
-                        catch(Exception e)
-                        {
-                            this.OnError(e);
-                        }
-                    }
-                });
-            }
+            conn.Send(bytes);
         }
     }
 
