@@ -94,7 +94,7 @@ namespace UdpSessions
 
         public void Send(byte[] bytes)
         {
-            conn.Send(bytes, hostname, serverPort);
+            conn.Send(bytes);
         }
     }
 
