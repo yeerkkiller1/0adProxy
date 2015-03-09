@@ -59,7 +59,8 @@ namespace UdpSessions
 
         public UdpSender(string hostname, int serverPort)
         {
-            conn = new UdpClient(hostname, serverPort);
+            conn = new UdpClient(0);
+            conn.Connect(hostname, serverPort);
 
             this.hostname = hostname;
             this.serverPort = serverPort;
