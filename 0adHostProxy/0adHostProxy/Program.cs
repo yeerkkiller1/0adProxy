@@ -159,7 +159,7 @@ namespace _0adHostProxy
                     };
                     hostConn.OnError = (e) =>
                     {
-                        Console.WriteLine(port + "\t lost connection to host, dropping clients");
+                        Console.WriteLine(port + "\t lost connection to host, dropping clients " + e.ToString());
                         //BUG: This is not thread safe...
                         hostConnections.Clear();
                         //ReconnToProxy();
