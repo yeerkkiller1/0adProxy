@@ -57,18 +57,16 @@ namespace UdpSessions
         string hostname;
         int serverPort;
 
+        bool reading = false;
         public UdpSender(string hostname, int serverPort)
         {
             conn = new UdpClient(0);
-            conn.Connect(hostname, serverPort);
 
             this.hostname = hostname;
             this.serverPort = serverPort;
-
-            this.StartReading();
         }
 
-        public void StartReading()
+        private void StartReading()
         {
             Task.Run(() =>
             {
@@ -95,7 +93,13 @@ namespace UdpSessions
 
         public void Send(byte[] bytes)
         {
-            conn.Send(bytes);
+            conn.Send(bytes, hostname, serverPort);
+
+            if(!reading)
+            {
+                reading = true;
+                StartReading();
+            }
         }
     }
 
