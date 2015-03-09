@@ -118,6 +118,12 @@ namespace UdpSessions
             return endPoint.GetHashCode();
         }
 
+        public override bool Equals(object obj)
+        {
+            UdpSession session = (UdpSession)obj;
+            return endPoint.Equals(session.endPoint);
+        }
+
         public override string ToString()
         {
             return endPoint.ToString();

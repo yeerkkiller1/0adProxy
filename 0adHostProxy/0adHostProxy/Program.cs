@@ -26,19 +26,21 @@ namespace _0adHostProxy
         static void ReconnToProxy()
         {
             bool connected = false;
-            while(!connected)
-            try
+            while (!connected)
             {
-                Console.WriteLine("Connecting to proxy at {0}:{1}", proxyAddress, proxyPort);
-                proxyServer = new TcpClient(proxyAddress, proxyPort);
-                proxyStream = proxyServer.GetStream();
-                connected = true;
-                Console.WriteLine("Connected to proxy");
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine("Failed to connect to proxy, retrying in {0}ms. Reason: {1}", retryTime, e.ToString());
-                Thread.Sleep(retryTime);
+                try
+                {
+                    Console.WriteLine("Connecting to proxy at {0}:{1}", proxyAddress, proxyPort);
+                    proxyServer = new TcpClient(proxyAddress, proxyPort);
+                    proxyStream = proxyServer.GetStream();
+                    connected = true;
+                    Console.WriteLine("Connected to proxy");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Failed to connect to proxy, retrying in {0}ms. Reason: {1}", retryTime, e.ToString());
+                    Thread.Sleep(retryTime);
+                }
             }
         }
 
@@ -81,7 +83,7 @@ namespace _0adHostProxy
                     {
                         lock(proxyStream)
                         {
-                            Console.WriteLine(port + "\t sent " + bytes.Length + " packet, sending to proxy");
+                            Console.WriteLine(port + "\t read " + bytes.Length + " from host, sending to proxy");
                             proxyStream.WriteInt(port);
                             proxyStream.WriteInt(bytes.Length);
                             proxyStream.Write(bytes);
@@ -89,9 +91,10 @@ namespace _0adHostProxy
                     };
                     hostConn.OnError = (e) =>
                     {
-                        Console.WriteLine(port + "\t lost connection to host, assuming bad client and dropping client");
+                        Console.WriteLine(port + "\t lost connection to host, dropping client and reconnecting to proxy");
                         //BUG: This is not thread safe...
-                        hostConnections.Remove(port);
+                        hostConnections.Clear();
+                        ReconnToProxy();
                     };
                 }
 

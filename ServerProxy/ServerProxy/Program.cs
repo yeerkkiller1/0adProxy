@@ -35,9 +35,10 @@ namespace ServerProxy
             hostStream = hostClient.GetStream();
             Console.WriteLine("Received conn from " + hostClient.Client.RemoteEndPoint.ToString());
 
+            server.OnConn = (session) => Console.WriteLine(session.ToString() + " \t connected");
             server.OnMessage = (session, bytes) =>
             {
-                Console.WriteLine(session + "\t received " + bytes.Length);
+                Console.WriteLine(session + "\t received from client " + bytes.Length);
 
                 try
                 {

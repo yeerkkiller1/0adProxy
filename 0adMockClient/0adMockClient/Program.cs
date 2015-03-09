@@ -45,7 +45,7 @@ namespace _0adMockClient
                     });
 
                     Console.WriteLine("Sending packet");
-                    client.Send(payload, payload.Length, "localhost", clientPort);
+                    client.Send(payload, payload.Length, "104.236.137.119", clientPort);
 
                     Thread.Sleep(timeout);
                     fuckyou = true;
