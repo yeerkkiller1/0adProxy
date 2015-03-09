@@ -237,9 +237,17 @@ namespace UdpSessions
         }
         public static byte[] ReadBytes(this NetworkStream stream, int count)
         {
+            int bytesRead = 0;
             var bytes = new byte[count];
-            int readCount = stream.Read(bytes, 0, bytes.Length);
-            if (readCount != count) throw new NotImplementedException();
+            while (bytesRead < count)
+            {
+                int readCount = stream.Read(bytes, bytesRead, count - bytesRead);
+                bytesRead += readCount;
+            }
+            if (bytesRead > count)
+            {
+                throw new NotImplementedException("Read too many bytes, wtf?");
+            }
             return bytes;
         }
 
@@ -249,9 +257,7 @@ namespace UdpSessions
         }
         public static int ReadInt(this NetworkStream stream)
         {
-            var bytes = new byte[4];
-            int count = stream.Read(bytes);
-            if (count != 4) throw new NotImplementedException();
+            byte[] bytes = stream.ReadBytes(4);
             return BitConverter.ToInt32(bytes, 0);
         }
 
