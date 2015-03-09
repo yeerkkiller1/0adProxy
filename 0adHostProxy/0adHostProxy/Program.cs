@@ -78,7 +78,6 @@ namespace _0adHostProxy
 
             Action readFromProxy = () =>
             {
-                Console.WriteLine("Starting read from " + proxyServer.Client.LocalEndPoint.ToString());
                 try
                 {
                     port = proxyStream.ReadInt();
@@ -93,7 +92,6 @@ namespace _0adHostProxy
                 finally
                 {
                     doneRead.Release();
-                    Console.WriteLine("Finished read from " + proxyServer.Client.LocalEndPoint.ToString());
                 }
             };
             readThread = new Thread(new ThreadStart(readFromProxy));
@@ -134,7 +132,7 @@ namespace _0adHostProxy
                 {
                     ReadFromProxy(out port, out packet);
 
-                    Console.WriteLine(port + "\t read " + packet.Length + " from proxy");
+                    Console.WriteLine(port + "\t read " + packet.Length + " from proxy, sending to host");
                 }
                 catch(Exception e)
                 {
@@ -161,7 +159,7 @@ namespace _0adHostProxy
                     };
                     hostConn.OnError = (e) =>
                     {
-                        Console.WriteLine(port + "\t lost connection to host, dropping client and reconnecting to proxy");
+                        Console.WriteLine(port + "\t lost connection to host, dropping clients");
                         //BUG: This is not thread safe...
                         hostConnections.Clear();
                         //ReconnToProxy();

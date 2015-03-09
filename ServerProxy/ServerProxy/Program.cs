@@ -52,7 +52,7 @@ namespace ServerProxy
                 }
                 catch(Exception e)
                 {
-                    Console.WriteLine("Error when sending to host proxy, assuming disconnect, reconnecting");
+                    Console.WriteLine("Error when sending to host proxy, assuming disconnect, reconnecting " + e.ToString());
                     ReconnToHostProxy();
                 }
             };
