@@ -38,7 +38,7 @@ namespace ServerProxy
             server.OnConn = (session) => Console.WriteLine(session.ToString() + " \t connected");
             server.OnMessage = (session, bytes) =>
             {
-                Console.WriteLine(session + "\t received from client " + bytes.Length);
+                Console.WriteLine(session + "\t received from client, sending to host proxy " + bytes.Length);
 
                 try
                 {
@@ -58,6 +58,35 @@ namespace ServerProxy
             };
         }
 
+        static void ReadFromHostProxy()
+        {
+            int port = -1;
+            byte[] packet = null;
+            try
+            {
+                //Read the response from the host proxy
+                port = hostStream.ReadInt();
+                int packetSize = hostStream.ReadInt();
+
+                packet = hostStream.ReadBytes(packetSize);
+                Console.WriteLine(port + "\t read " + packet.Length + " response packet");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error when sending to host proxy, assuming disconnect, reconnecting");
+                ReconnToHostProxy();
+                return;
+            }
+
+            var session = server.FindSession(port);
+            if (session == null)
+            {
+                Console.WriteLine(port + "\t received packet from session not connected to server, ignoring");
+                return;
+            }
+            session.Send(packet);
+        }
+
         static void Main(string[] args)
         {
             ReconnToHostProxy();
@@ -66,31 +95,14 @@ namespace ServerProxy
             {
                 while (true)
                 {
-                    int port = -1;
-                    byte[] packet = null;
                     try
                     {
-                        //Read the response from the host proxy
-                        port = hostStream.ReadInt();
-                        int packetSize = hostStream.ReadInt();
-
-                        packet = hostStream.ReadBytes(packetSize);
-                        Console.WriteLine(port + "\t read " + packet.Length + " response packet");
+                        ReadFromHostProxy();
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
-                        Console.WriteLine("Error when sending to host proxy, assuming disconnect, reconnecting");
-                        ReconnToHostProxy();
-                        continue;
+                        Console.WriteLine("CRAP! Unhandled error when reading from host (swallowing it now) " + e.ToString());
                     }
-
-                    var session = server.FindSession(port);
-                    if(session == null)
-                    {
-                        Console.WriteLine(port + "\t received packet from session not connected to server, ignoring");
-                        continue;
-                    }
-                    session.Send(packet);
                 }
             });
 
