@@ -69,7 +69,7 @@ namespace ServerProxy
                 int packetSize = hostStream.ReadInt();
 
                 packet = hostStream.ReadBytes(packetSize);
-                Console.WriteLine(port + "\t read " + packet.Length + " response packet");
+                Console.WriteLine(port + "\t read " + packet.Length + " host response packet, sending to client");
             }
             catch (Exception e)
             {
