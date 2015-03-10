@@ -115,13 +115,23 @@ namespace UDPTest
             string destName = options.Host + ":" + options.Port;
             Console.WriteLine("Sending to " + destName + " every " + options.Interval + "ms");
 
+            UdpSender sender = null;
+            Func<UdpSender> makeSender = () => new UdpSender(options.Host, options.Port, read: options.Reply, sourcePort: options.SourcePort, sourceHost: options.SourceHost);
+            if(options.SourcePort != 0)
+            {
+                sender = makeSender();
+            }
+
             Task.Run(() =>
             {
                 while (true)
                 {
                     try
                     {
-                        UdpSender sender = new UdpSender(options.Host, options.Port, read: options.Reply, sourcePort: options.SourcePort, sourceHost: options.SourceHost);
+                        if (options.SourcePort == 0)
+                        {
+                            sender = makeSender();
+                        }
 
                         if (options.Reply)
                         {
