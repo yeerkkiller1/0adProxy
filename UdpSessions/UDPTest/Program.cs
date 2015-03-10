@@ -73,7 +73,7 @@ namespace UDPTest
                 return;
             }
 
-            //Console.WriteLine(JsonConvert.SerializeObject(options));
+            Console.WriteLine(JsonConvert.SerializeObject(options));
 
             if(options.ListenVerb != null)
             {
@@ -119,19 +119,26 @@ namespace UDPTest
             {
                 while (true)
                 {
-                    UdpSender sender = new UdpSender(options.Host, options.Port, read: options.Reply, sourcePort: options.SourcePort, sourceHost: options.SourceHost);
-
-                    if (options.Reply)
+                    try
                     {
-                        sender.OnMessage = (response) =>
+                        UdpSender sender = new UdpSender(options.Host, options.Port, read: options.Reply, sourcePort: options.SourcePort, sourceHost: options.SourceHost);
+
+                        if (options.Reply)
                         {
-                            Console.WriteLine("Received reply to " + sender.LocalEndPoint.ToString() + " of " + string.Join(" ", response));
-                        };
+                            sender.OnMessage = (response) =>
+                            {
+                                Console.WriteLine("Received reply to " + sender.LocalEndPoint.ToString() + " of " + string.Join(" ", response));
+                            };
+                        }
+
+                        sender.Send(new byte[] { 72, 73 });
+
+                        Console.WriteLine("Sent packet to " + destName + " from " + sender.LocalEndPoint.ToString());
                     }
-
-                    sender.Send(new byte[] { 72, 73 });
-
-                    Console.WriteLine("Sent packet to " + destName + " from " + sender.LocalEndPoint.ToString());
+                    catch(Exception e)
+                    {
+                        Console.WriteLine("Error when sending packet " + e.ToString());
+                    }
 
                     Thread.Sleep(options.Interval);
                 }
