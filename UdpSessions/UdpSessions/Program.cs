@@ -53,18 +53,33 @@ namespace UdpSessions
         public Action<byte[]> OnMessage = null;
         public Action<Exception> OnError = null;
 
+        public EndPoint LocalEndPoint
+        {
+            get
+            {
+                return conn.Client.LocalEndPoint;
+            }
+        }
+
+
         UdpClient conn;
         string hostname;
         int serverPort;
 
         bool reading = false;
 
-        public UdpSender(string hostname, int serverPort)
+        public UdpSender(string hostname, int serverPort, bool read=true)
         {
             conn = new UdpClient(0);
 
             this.hostname = hostname;
             this.serverPort = serverPort;
+
+            if(!read)
+            {
+                //Eh... sort of hackish... but w/e
+                reading = true;
+            }
         }
 
         private void StartReading()

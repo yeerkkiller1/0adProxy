@@ -1,0 +1,12 @@
+C:\Repos\0adProxy\UdpSessions\UDPTest\bin\Debug\UDPTest.exe.config
+C:\Repos\0adProxy\UdpSessions\UDPTest\bin\Debug\UDPTest.exe
+C:\Repos\0adProxy\UdpSessions\UDPTest\bin\Debug\UDPTest.pdb
+C:\Repos\0adProxy\UdpSessions\UDPTest\bin\Debug\CommandLine.dll
+C:\Repos\0adProxy\UdpSessions\UDPTest\bin\Debug\UdpSessions.exe
+C:\Repos\0adProxy\UdpSessions\UDPTest\bin\Debug\CommandLine.xml
+C:\Repos\0adProxy\UdpSessions\UDPTest\bin\Debug\UdpSessions.pdb
+C:\Repos\0adProxy\UdpSessions\UDPTest\obj\Debug\UDPTest.csprojResolveAssemblyReference.cache
+C:\Repos\0adProxy\UdpSessions\UDPTest\obj\Debug\UDPTest.exe
+C:\Repos\0adProxy\UdpSessions\UDPTest\obj\Debug\UDPTest.pdb
+C:\Repos\0adProxy\UdpSessions\UDPTest\bin\Debug\Newtonsoft.Json.dll
+C:\Repos\0adProxy\UdpSessions\UDPTest\bin\Debug\Newtonsoft.Json.xml

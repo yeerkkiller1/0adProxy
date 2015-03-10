@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdpSessions", "UdpSessions\UdpSessions.csproj", "{63E33D61-1732-424E-8132-40D69D14E064}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPTest", "UDPTest\UDPTest.csproj", "{AB26E622-2265-48E2-9045-F6A1AD4B7505}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{63E33D61-1732-424E-8132-40D69D14E064}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63E33D61-1732-424E-8132-40D69D14E064}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63E33D61-1732-424E-8132-40D69D14E064}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB26E622-2265-48E2-9045-F6A1AD4B7505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB26E622-2265-48E2-9045-F6A1AD4B7505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB26E622-2265-48E2-9045-F6A1AD4B7505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB26E622-2265-48E2-9045-F6A1AD4B7505}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
