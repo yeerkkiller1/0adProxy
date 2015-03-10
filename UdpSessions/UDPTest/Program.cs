@@ -17,6 +17,9 @@ namespace UDPTest
         {
             [Option('p', "port", Required = true, HelpText = "Port to listen on")]
             public int Port { get; set; }
+
+            [Option('r', "reply", HelpText = "If we should reply to the packets we received (with the given length % 255)")]
+            public bool Reply { get; set; }
         }
 
         class SendOptions
@@ -29,6 +32,9 @@ namespace UDPTest
 
             [Option('i', "interval", DefaultValue = 1000, HelpText = "Default frequency in milliseconds to send packets at")]
             public int Interval { get; set; }
+
+            [Option('r', "reply", HelpText = "If we should accept replies, we only accept 1 though")]
+            public bool Reply { get; set; }
         }
 
         class Options
@@ -84,6 +90,18 @@ namespace UDPTest
             Console.WriteLine("Listening on port " + options.Port);
 
             UdpListener listener = new UdpListener(options.Port);
+
+            listener.OnMessage = (session, message) =>
+            {
+                Console.WriteLine(session.ToString() + " sent " + message.Length.ToString());
+
+                if(options.Reply)
+                {
+                    session.Send(new byte[] { (byte)(message.Length % 255) });
+
+                    Console.WriteLine(session.ToString() + " replied to " + message.Length.ToString());
+                }
+            };
         }
 
         static void Send(SendOptions options)
@@ -96,6 +114,14 @@ namespace UDPTest
                 while (true)
                 {
                     UdpSender sender = new UdpSender(options.Host, options.Port);
+
+                    if (options.Reply)
+                    {
+                        sender.OnMessage = (response) =>
+                        {
+                            Console.WriteLine("Received reply to " + sender.LocalEndPoint.ToString() + " of " + string.Join(" ", response));
+                        };
+                    }
 
                     sender.Send(new byte[] { 72, 73 });
 
