@@ -73,7 +73,7 @@ namespace UDPTest
                 return;
             }
 
-            Console.WriteLine(JsonConvert.SerializeObject(options));
+            //Console.WriteLine(JsonConvert.SerializeObject(options));
 
             if(options.ListenVerb != null)
             {
