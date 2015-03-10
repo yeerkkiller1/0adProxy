@@ -70,8 +70,14 @@ namespace UdpSessions
 
         public UdpSender(string hostname, int serverPort, bool read=true, int sourcePort=0, string sourceHost=null)
         {
-            sourceHost = sourceHost ?? "0.0.0.0";
-            conn = new UdpClient(new IPEndPoint(IPAddress.Parse(sourceHost), sourcePort));
+            if (sourceHost != null)
+            {
+                conn = new UdpClient(new IPEndPoint(IPAddress.Parse(sourceHost), sourcePort));
+            }
+            else
+            {
+                conn = new UdpClient(sourcePort);
+            }
 
             this.hostname = hostname;
             this.serverPort = serverPort;
