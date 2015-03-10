@@ -33,6 +33,9 @@ namespace UDPTest
             [Option('s', "sourcePort", DefaultValue=0, HelpText = "Port to send from")]
             public int SourcePort { get; set; }
 
+            [Option('n', "sourceHost", DefaultValue = null, HelpText = "Host to send from")]
+            public string SourceHost { get; set; }
+
             [Option('i', "interval", DefaultValue = 1000, HelpText = "Default frequency in milliseconds to send packets at")]
             public int Interval { get; set; }
 
@@ -116,7 +119,7 @@ namespace UDPTest
             {
                 while (true)
                 {
-                    UdpSender sender = new UdpSender(options.Host, options.Port, read: options.Reply, sourcePort: options.SourcePort);
+                    UdpSender sender = new UdpSender(options.Host, options.Port, read: options.Reply, sourcePort: options.SourcePort, sourceHost: options.SourceHost);
 
                     if (options.Reply)
                     {

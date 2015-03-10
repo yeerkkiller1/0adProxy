@@ -68,9 +68,10 @@ namespace UdpSessions
 
         bool reading = false;
 
-        public UdpSender(string hostname, int serverPort, bool read=true, int sourcePort=0)
+        public UdpSender(string hostname, int serverPort, bool read=true, int sourcePort=0, string sourceHost=null)
         {
-            conn = new UdpClient(sourcePort);
+            sourceHost = sourceHost ?? "localhost";
+            conn = new UdpClient(sourceHost, sourcePort);
 
             this.hostname = hostname;
             this.serverPort = serverPort;
