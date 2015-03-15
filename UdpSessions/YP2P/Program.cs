@@ -88,21 +88,38 @@ namespace YP2P
         {
             List<int> sourcePorts = Enumerable.Range(50000, options.PortCount).Select(x => RandomPort()).Distinct().ToList();
 
+            int portsSentTo = 0;
+
             sourcePorts.ForEach(sourcePort =>
             {
-                UdpSender sender = new UdpSender(options.DestIP, sourcePort, read: false, sourcePort: options.Port);
-                sender.Send(new byte[] { 1, 2, 3 });
+                try
+                {
+                    UdpSender sender = new UdpSender(options.DestIP, sourcePort, read: false, sourcePort: options.Port);
+                    sender.Send(new byte[] { 1, 2, 3 });
+                    portsSentTo++;
+                }
+                catch (Exception e) { }
             });
+            Console.WriteLine("Send packets to " + portsSentTo + " ports");
         }
         static void Router(Options options)
         {
             List<int> sourcePorts = Enumerable.Range(50000, options.PortCount).Select(x => RandomPort()).Distinct().ToList();
 
+            int portsSentTo = 0;
+
             sourcePorts.ForEach(sourcePort =>
             {
-                UdpSender sender = new UdpSender(options.DestIP, options.Port, sourcePort: sourcePort);
-                sender.Send(new byte[] { 1, 2, 3 });
+                try
+                {
+                    UdpSender sender = new UdpSender(options.DestIP, options.Port, sourcePort: sourcePort);
+                    sender.Send(new byte[] { 1, 2, 3 });
+                    portsSentTo++;
+                }
+                catch (Exception e) { }
             });
+
+            Console.WriteLine("Send packets to " + portsSentTo + " ports");
         }
     }
 }
