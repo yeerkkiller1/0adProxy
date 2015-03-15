@@ -90,7 +90,7 @@ namespace YP2P
 
             sourcePorts.ForEach(sourcePort =>
             {
-                UdpSender sender = new UdpSender(options.DestIP, options.Port, read: false, sourcePort: sourcePort);
+                UdpSender sender = new UdpSender(options.DestIP, sourcePort, read: false, sourcePort: options.Port);
                 sender.Send(new byte[] { 1, 2, 3 });
             });
         }
