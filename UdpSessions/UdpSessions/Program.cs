@@ -82,6 +82,8 @@ namespace UdpSessions
             this.hostname = hostname;
             this.serverPort = serverPort;
 
+            this.OnMessage = bytes => Console.WriteLine("Received response of length " + bytes.Length);
+
             if(!read)
             {
                 //Eh... sort of hackish... but w/e
