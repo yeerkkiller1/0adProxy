@@ -3,3 +3,4 @@ C:\Repos\0adProxy\UdpSessions\UdpSessions\bin\Debug\UdpSessions.exe
 C:\Repos\0adProxy\UdpSessions\UdpSessions\bin\Debug\UdpSessions.pdb
 C:\Repos\0adProxy\UdpSessions\UdpSessions\obj\Debug\UdpSessions.exe
 C:\Repos\0adProxy\UdpSessions\UdpSessions\obj\Debug\UdpSessions.pdb
+C:\Repos\0adProxy\UdpSessions\UdpSessions\obj\Debug\UdpSessions.csprojResolveAssemblyReference.cache

@@ -29,7 +29,6 @@ namespace _0adHostProxy
             if (isReconnecting) return;
 
             isReconnecting = true;
-            CancelRead();
 
             while (true)
             {
@@ -50,63 +49,12 @@ namespace _0adHostProxy
             }
         }
 
-
-        static Thread readThread;
-        static Semaphore doneRead;
-        static void CancelRead()
+        static void ReadFromProxy(out int port, out byte[] packet)
         {
-            try
-            {
-                readThread.Abort();
-            }catch(Exception e)
-            {
-                Console.WriteLine("Error when canceling read " + e.ToString());
-            }
+            port = proxyStream.ReadInt();
+            var packetSize = proxyStream.ReadInt();
 
-            if (doneRead != null)
-            {
-                doneRead.Release();
-            }
-        }
-        static void ReadFromProxy(out int out_port, out byte[] out_packet)
-        {
-            int port = -1;
-            byte[] packet = null;
-
-            doneRead = new Semaphore(0, 1);
-            Exception e = null;
-
-            Action readFromProxy = () =>
-            {
-                try
-                {
-                    port = proxyStream.ReadInt();
-                    var packetSize = proxyStream.ReadInt();
-
-                    packet = proxyStream.ReadBytes(packetSize);
-                }
-                catch(Exception err)
-                {
-                    e = err;
-                }
-                finally
-                {
-                    doneRead.Release();
-                }
-            };
-            readThread = new Thread(new ThreadStart(readFromProxy));
-            readThread.Start();
-            readThread = null;
-
-            doneRead.WaitOne();
-
-            out_port = port;
-            out_packet = packet;
-
-            if(e != null)
-            {
-                throw e;
-            }
+            packet = proxyStream.ReadBytes(packetSize);
         }
 
         static void Main(string[] args)

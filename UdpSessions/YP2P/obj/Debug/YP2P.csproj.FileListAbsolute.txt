@@ -1,0 +1,12 @@
+C:\Repos\0adProxy\UdpSessions\YP2P\bin\Debug\YP2P.exe.config
+C:\Repos\0adProxy\UdpSessions\YP2P\bin\Debug\YP2P.exe
+C:\Repos\0adProxy\UdpSessions\YP2P\bin\Debug\YP2P.pdb
+C:\Repos\0adProxy\UdpSessions\YP2P\bin\Debug\CommandLine.dll
+C:\Repos\0adProxy\UdpSessions\YP2P\bin\Debug\Newtonsoft.Json.dll
+C:\Repos\0adProxy\UdpSessions\YP2P\bin\Debug\CommandLine.xml
+C:\Repos\0adProxy\UdpSessions\YP2P\bin\Debug\Newtonsoft.Json.xml
+C:\Repos\0adProxy\UdpSessions\YP2P\obj\Debug\YP2P.csprojResolveAssemblyReference.cache
+C:\Repos\0adProxy\UdpSessions\YP2P\obj\Debug\YP2P.exe
+C:\Repos\0adProxy\UdpSessions\YP2P\obj\Debug\YP2P.pdb
+C:\Repos\0adProxy\UdpSessions\YP2P\bin\Debug\UdpSessions.exe
+C:\Repos\0adProxy\UdpSessions\YP2P\bin\Debug\UdpSessions.pdb
