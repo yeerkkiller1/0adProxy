@@ -86,7 +86,7 @@ namespace YP2P
 
         static void Corporate(Options options)
         {
-            List<int> sourcePorts = Enumerable.Range(50000, options.PortCount).Select(x => RandomPort()).ToList();
+            List<int> sourcePorts = Enumerable.Range(50000, options.PortCount).Select(x => RandomPort()).Distinct().ToList();
 
             sourcePorts.ForEach(sourcePort =>
             {
@@ -96,7 +96,7 @@ namespace YP2P
         }
         static void Router(Options options)
         {
-            List<int> sourcePorts = Enumerable.Range(50000, options.PortCount).Select(x => RandomPort()).ToList();
+            List<int> sourcePorts = Enumerable.Range(50000, options.PortCount).Select(x => RandomPort()).Distinct().ToList();
 
             sourcePorts.ForEach(sourcePort =>
             {
