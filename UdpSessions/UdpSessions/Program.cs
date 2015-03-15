@@ -63,8 +63,8 @@ namespace UdpSessions
 
 
         UdpClient conn;
-        string hostname;
-        int serverPort;
+        public string hostname;
+        public int serverPort;
 
         bool reading = false;
 

@@ -16,7 +16,7 @@ namespace _0adHostProxy
         static int proxyPort = 20599;
         static int clientPort = 20595;
 
-        static int hostPort = 18019;
+        static int hostPort = 20595;
 
         static int retryTime = 5000;
 
