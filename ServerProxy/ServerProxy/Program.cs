@@ -12,7 +12,7 @@ namespace ServerProxy
 {
     class Program
     {
-        static int proxyPort = 20599;
+        static int proxyPort = 443;
         static int clientPort = 20595;
 
         static UdpListener server = new UdpListener(clientPort);

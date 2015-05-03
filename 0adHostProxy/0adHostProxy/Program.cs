@@ -13,7 +13,7 @@ namespace _0adHostProxy
     class Program
     {
         static string proxyAddress = "localhost";
-        static int proxyPort = 20599;
+        static int proxyPort = 443;
         static int clientPort = 20595;
 
         static int hostPort = 20595;
